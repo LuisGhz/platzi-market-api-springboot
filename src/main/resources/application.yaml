@@ -5,3 +5,6 @@ spring:
     url: jdbc:postgresql://localhost:5432/platzi-market
     username: postgres
     password: postgres
+server:
+  servlet:
+    context-path: /platzi-market/api/
