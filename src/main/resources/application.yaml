@@ -1,3 +1,7 @@
 spring:
   application:
     name: Platzi market
+  datasource:
+    url: jdbc:postgresql://localhost:5432/platzi-market
+    username: postgres
+    password: psotgres
