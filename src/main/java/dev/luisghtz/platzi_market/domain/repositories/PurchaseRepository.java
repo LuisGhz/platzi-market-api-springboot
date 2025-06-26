@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import dev.luisghtz.platzi_market.domain.Purchase;
 
-public interface PurchateRepository {
+public interface PurchaseRepository {
   List<Purchase> getAll();
 
   Optional<List<Purchase>> getByClientId(String clientId);
