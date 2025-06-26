@@ -6,23 +6,23 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import dev.luisghtz.platzi_market.domain.Purchase;
-import dev.luisghtz.platzi_market.domain.repositories.PurchaseRepository;
+import dev.luisghtz.platzi_market.percistence.CompraRepository;
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
 public class PurchaseService {
-  private final PurchaseRepository purchaseRepository;
+  private final CompraRepository compraRepository;
 
   public List<Purchase> getAll() {
-    return purchaseRepository.getAll();
+    return compraRepository.getAll();
   }
 
   public Optional<List<Purchase>> getByClientId(String clientId) {
-    return purchaseRepository.getByClientId(clientId);
+    return compraRepository.getByClientId(clientId);
   }
 
   public Purchase save(Purchase purchase) {
-    return purchaseRepository.save(purchase);
+    return compraRepository.save(purchase);
   }
 }
