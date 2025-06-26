@@ -8,6 +8,10 @@ import org.springframework.web.bind.annotation.*;
 
 import dev.luisghtz.platzi_market.domain.Product;
 import dev.luisghtz.platzi_market.domain.services.ProductService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -17,12 +21,20 @@ public class ProductController {
   private final ProductService productService;
 
   @GetMapping
+  @Operation(description = "Get all supermarket products")
+  @ApiResponse(responseCode = "200")
   public ResponseEntity<List<Product>> getAll() {
     return ResponseEntity.ok(productService.getAll());
   }
 
   @GetMapping("/category/{categoryId}")
-  public ResponseEntity<List<Product>> getByCategory(@PathVariable int categoryId) {
+  @Operation(description = "Get by category")
+  @ApiResponses({
+      @ApiResponse(responseCode = "200"),
+      @ApiResponse(responseCode = "404")
+  })
+  public ResponseEntity<List<Product>> getByCategory(
+      @Parameter(description = "Category's id", required = true) @PathVariable int categoryId) {
     return productService.getByCategory(categoryId)
         .map(ResponseEntity::ok)
         .orElse(ResponseEntity.notFound().build());
